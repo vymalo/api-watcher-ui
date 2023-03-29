@@ -26,6 +26,7 @@ jobs:
         with:
           name: build
           path: build
+
   release:
     needs: build
     runs-on: ubuntu-latest
