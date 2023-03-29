@@ -32,7 +32,7 @@ jobs:
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Download Build Artifacts
         uses: actions/download-artifact@v3
@@ -72,6 +72,5 @@ jobs:
           draft: false
           prerelease: false
           allowUpdates: true
-          artifactContentType: application/zip
           bodyFile: CHANGELOG.md
           tag: v0.0.1
