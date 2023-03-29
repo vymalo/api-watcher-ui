@@ -13,7 +13,7 @@ jobs:
         with:
           node-version: 18.x
       - name: Install Dependencies
-        run: yarn --production --silent
+        run: yarn --silent
       - name: Generate OpenAPI
         run: |
           yarn gen-api
