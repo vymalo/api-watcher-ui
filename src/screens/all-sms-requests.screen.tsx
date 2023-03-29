@@ -35,6 +35,7 @@ export function AllSmsRequestsScreen() {
         });
     }, [location.hash, location.pathname, navigate, pagination]);
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
         const getInt = (param: string, def = 0) => {
             let int = def;
@@ -49,7 +50,7 @@ export function AllSmsRequestsScreen() {
         const size = getInt('size', 4);
 
         setPagination(prevState => ({...prevState, page, size}));
-    }, []);
+    });
 
     return (
         <AppLayout title='SMS Requests'>
