@@ -65,8 +65,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           artifacts: build.zip
-          body: |
-            New release
           token: ${{ secrets.GITHUB_TOKEN }}
           draft: false
           prerelease: false
+          allowUpdates: true
+          artifactContentType: application/zip
+          bodyFile: CHANGELOG.md
