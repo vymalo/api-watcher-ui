@@ -20,11 +20,12 @@ jobs:
       - name: Build and Test
         run: |
           yarn build
+
       - name: Archive Artifacts
         uses: actions/upload-artifact@v2
         with:
           name: build
-          path: build/
+          path: build
   release:
     needs: build
     runs-on: ubuntu-latest
@@ -38,7 +39,7 @@ jobs:
           fetch-depth: 0
 
       - name: Download Build Artifacts
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
