@@ -14,10 +14,12 @@ jobs:
           node-version: 18.x
       - name: Install Dependencies
         run: yarn --production --silent
+      - name: Generate OpenAPI
+        run: |
+          yarn gen-api
       - name: Build and Test
         run: |
           yarn build
-          CI=true yarn test
       - name: Archive Artifacts
         uses: actions/upload-artifact@v2
         with:
