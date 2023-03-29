@@ -1,6 +1,6 @@
-import {io} from 'socket.io-client';
+import { io } from 'socket.io-client';
 
-// "undefined" means the URL will be computed from the `window.location` object
+// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 const URL = process.env.REACT_APP_BACKEND_URL!;
 
 export const socket = io(URL);

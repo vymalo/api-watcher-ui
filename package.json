@@ -29,8 +29,8 @@
     "eject": "react-scripts eject",
     "gen-api": "mkdir -p src/store && rtk-query-codegen-openapi openapi-config.ts",
     "lint": "eslint .",
-    "lint:fix": "eslint --fix",
-    "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
+    "lint:fix": "eslint --fix .",
+    "format": "prettier --write src/**/* --config .prettierrc.json src"
   },
   "eslintConfig": {
     "extends": [

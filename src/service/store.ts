@@ -1,14 +1,14 @@
-import {configureStore} from '@reduxjs/toolkit';
-import {emptySplitApi} from "./empty.api";
-import {setupListeners} from "@reduxjs/toolkit/query";
+import { configureStore } from '@reduxjs/toolkit';
+import { emptySplitApi } from './empty.api';
+import { setupListeners } from '@reduxjs/toolkit/query';
 import logger from 'redux-logger';
-import {socketSlice} from "./socket.slice";
-import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
+import { socketSlice } from './socket.slice';
+import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 
 export const store = configureStore({
     reducer: {
         socket: socketSlice.reducer,
-        [emptySplitApi.reducerPath]: emptySplitApi.reducer,
+        [emptySplitApi.reducerPath]: emptySplitApi.reducer
     },
     // Adding the api middleware enables caching, invalidation, polling,
     // and other useful features of `rtk-query`.
@@ -23,7 +23,7 @@ export const store = configureStore({
 
         return tmp;
     },
-    devTools: process.env.REACT_APP_NODE_ENV !== 'production',
+    devTools: process.env.REACT_APP_NODE_ENV !== 'production'
 });
 
 // optional, but required for refetchOnFocus/refetchOnReconnect behaviors

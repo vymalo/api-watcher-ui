@@ -1,9 +1,9 @@
-import {socket} from "../service/socket";
-import {useEffect} from "react";
-import {setSocketConnection} from "../service/socket.slice";
-import {mk} from "../common/keys";
-import {smsApi} from "../store/sms.gen.api";
-import {useAppDispatch} from "../service/store";
+import { socket } from '../service/socket';
+import { useEffect } from 'react';
+import { setSocketConnection } from '../service/socket.slice';
+import { mk } from '../common/keys';
+import { smsApi } from '../store/sms.gen.api';
+import { useAppDispatch } from '../service/store';
 import * as _ from 'lodash';
 
 export function SocketComponent() {
@@ -13,11 +13,11 @@ export function SocketComponent() {
     useEffect(() => {
         const onConnect = () => {
             dispatch(setSocketConnection(true));
-        }
+        };
 
         const onDisconnect = () => {
             dispatch(setSocketConnection(true));
-        }
+        };
 
         const onNewSms = (obj: any) => {
             const updateQueryDataThunk = smsApi.util.updateQueryData('getSmsRequests', {
@@ -26,7 +26,7 @@ export function SocketComponent() {
                 if (!_.includes(data.content, obj)) {
                     data.content.unshift(obj);
                     if (data.content.length >= size) {
-                        data.content.splice(size)
+                        data.content.splice(size);
                         data.meta.total += data.meta.total;
                     }
                 }

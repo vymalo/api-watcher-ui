@@ -1,12 +1,13 @@
-import {AppLayout} from "../components/app-layout";
-import {useGetSmsRequestsQuery} from "../store/sms.gen.api";
-import {AppPagination} from "../components/pagination";
-import {lazy, Suspense, useEffect, useState} from "react";
-import {useLocation, useNavigate, useSearchParams} from "react-router-dom";
-import {Loading} from "../components/loading";
-import {Pagination} from "../types/pagination";
+import React from 'react';
+import { AppLayout } from '../components/app-layout';
+import { useGetSmsRequestsQuery } from '../store/sms.gen.api';
+import { AppPagination } from '../components/pagination';
+import { lazy, Suspense, useEffect, useState } from 'react';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
+import { Loading } from '../components/loading';
+import { Pagination } from '../types/pagination';
 
-const DisplaySmsRequestTable = lazy(() => import("../components/display-sms-request-table"));
+const DisplaySmsRequestTable = lazy(() => import('../components/display-sms-request-table'));
 
 export function AllSmsRequestsScreen() {
     const navigate = useNavigate();
@@ -14,28 +15,27 @@ export function AllSmsRequestsScreen() {
     const [params] = useSearchParams();
 
     const [pagination, setPagination] = useState<Pagination>({
-        page: 0, size: 4,
+        page: 0, size: 4
     });
-    const {data, error, isLoading, isError, isSuccess} = useGetSmsRequestsQuery({
-        page: pagination.page, size: pagination.size,
+    const { data, error, isLoading, isError, isSuccess } = useGetSmsRequestsQuery({
+        page: pagination.page, size: pagination.size
     }, {
         pollingInterval: 60_000,
         refetchOnFocus: true,
         refetchOnReconnect: true,
-        refetchOnMountOrArgChange: true,
+        refetchOnMountOrArgChange: true
     });
 
     useEffect(() => {
         navigate({
             hash: location.hash,
             pathname: location.pathname,
-            search: `page=${pagination.page}&size=${pagination.size}`,
+            search: `page=${pagination.page}&size=${pagination.size}`
         }, {
-            replace: true,
+            replace: true
         });
     }, [location.hash, location.pathname, navigate, pagination]);
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
         const getInt = (param: string, def = 0) => {
             let int = def;
@@ -44,12 +44,12 @@ export function AllSmsRequestsScreen() {
                 int = Number(intStr);
             }
             return int;
-        }
+        };
 
         const page = getInt('page');
         const size = getInt('size', 4);
 
-        setPagination(prevState => ({...prevState, page, size}));
+        setPagination(prevState => ({ ...prevState, page, size }));
     });
 
     return (
@@ -68,8 +68,8 @@ export function AllSmsRequestsScreen() {
             )}
 
             {isSuccess && (
-                <Suspense fallback={<Loading/>}>
-                    <DisplaySmsRequestTable response={data}/>
+                <Suspense fallback={<Loading />}>
+                    <DisplaySmsRequestTable response={data} />
                 </Suspense>
             )}
 
