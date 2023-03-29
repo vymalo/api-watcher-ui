@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { Fragment, lazy, Suspense, useEffect, useState } from 'react';
 import { AppLayout } from '../components/app-layout';
 import { useGetSmsRequestsQuery } from '../store/sms.gen.api';
 import { AppPagination } from '../components/pagination';
-import { lazy, Suspense, useEffect, useState } from 'react';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { Loading } from '../components/loading';
 import { Pagination } from '../types/pagination';
@@ -55,16 +54,16 @@ export function AllSmsRequestsScreen() {
     return (
         <AppLayout title='SMS Requests'>
             {isLoading && (
-                <>
+                <Fragment>
                     Loading...
-                </>
+                </Fragment>
             )}
 
             {isError && (
-                <>
+                <Fragment>
                     Error when fetching objects:
                     <pre>{JSON.stringify(error, null, 4)}</pre>
-                </>
+                </Fragment>
             )}
 
             {isSuccess && (
@@ -75,10 +74,7 @@ export function AllSmsRequestsScreen() {
 
             <AppPagination
                 total={data?.meta?.total ?? 0}
-                onChange={value => {
-                    console.log('value >', value);
-                    setPagination(value);
-                }}
+                onChange={setPagination}
                 pagination={pagination}
             />
         </AppLayout>

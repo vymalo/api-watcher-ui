@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Disclosure } from '@headlessui/react';
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import { NavLink } from 'react-router-dom';
@@ -16,7 +16,7 @@ export function AppHeader() {
         <div className='min-h-full sticky'>
             <Disclosure as='nav' className='bg-gray-800'>
                 {({ open }) => (
-                    <>
+                    <Fragment>
                         <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
                             <div className='flex h-16 items-center justify-between'>
                                 <div className='flex items-center'>
@@ -104,7 +104,7 @@ export function AppHeader() {
                                 </div>
                             </div>
                         </Disclosure.Panel>
-                    </>
+                    </Fragment>
                 )}
             </Disclosure>
         </div>

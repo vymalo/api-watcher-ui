@@ -44,16 +44,14 @@ export function SizeSelectionPagination({ size, onChange }: SizeSelectionPaginat
                                 {sizes.map((size) => (
                                     <Listbox.Option
                                         key={size}
-                                        className={({ active }) =>
-                                            classNames(
-                                                active ? 'bg-indigo-600 text-white' : 'text-gray-900',
-                                                'relative cursor-default select-none py-2 pl-3 pr-9'
-                                            )
-                                        }
+                                        className={({ active }) => classNames(
+                                            active ? 'bg-indigo-600 text-white' : 'text-gray-900',
+                                            'relative cursor-default select-none py-2 pl-3 pr-9'
+                                        )}
                                         value={size}
                                     >
                                         {({ selected, active }) => (
-                                            <>
+                                            <Fragment>
                                                 <div className='flex items-center'>
                                                     <span
                                                         className={classNames(selected ? 'font-semibold' : 'font-normal', 'ml-3 block truncate')}
@@ -72,7 +70,7 @@ export function SizeSelectionPagination({ size, onChange }: SizeSelectionPaginat
                                                         <CheckIcon className='h-5 w-5' aria-hidden='true' />
                                                     </span>
                                                 ) : null}
-                                            </>
+                                            </Fragment>
                                         )}
                                     </Listbox.Option>
                                 ))}
