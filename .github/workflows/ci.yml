@@ -71,3 +71,4 @@ jobs:
           allowUpdates: true
           artifactContentType: application/zip
           bodyFile: CHANGELOG.md
+          tag: v0.0.1
