@@ -48,7 +48,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          filename: build.zip
+          type: 'zip'
+          filename: 'build.zip'
           path: build
 
       # Upload as an artifact of the current workflow
@@ -73,4 +74,4 @@ jobs:
           prerelease: false
           allowUpdates: true
           bodyFile: CHANGELOG.md
-          tag: v0.0.1
+          tag: v1.0.0

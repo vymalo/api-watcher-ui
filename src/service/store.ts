@@ -12,16 +12,23 @@ export const store = configureStore({
     },
     // Adding the api middleware enables caching, invalidation, polling,
     // and other useful features of `rtk-query`.
-    middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware()
+    middleware: (getDefaultMiddleware) => {
+        let tmp = getDefaultMiddleware()
             .concat(emptySplitApi.middleware)
-            .concat(logger),
-    devTools: process.env.NODE_ENV !== 'production',
+            .concat(logger);
+
+        if (process.env.REACT_APP_NODE_ENV !== 'production') {
+            tmp = tmp.concat(logger);
+        }
+
+        return tmp;
+    },
+    devTools: process.env.REACT_APP_NODE_ENV !== 'production',
 });
 
 // optional, but required for refetchOnFocus/refetchOnReconnect behaviors
 // see `setupListeners` docs - takes an optional callback as the 2nd arg for customization
-setupListeners(store.dispatch)
+setupListeners(store.dispatch);
 
 // This is to infer types from the store itself
 export type RootState = ReturnType<typeof store.getState>;

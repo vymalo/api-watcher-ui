@@ -28,3 +28,4 @@ yarn-error.log*
 .code
 .vs
 *.env*
+!.env.example
