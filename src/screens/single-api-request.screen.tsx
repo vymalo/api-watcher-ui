@@ -1,9 +1,9 @@
 import { AppLayout } from '../components/app-layout';
 import React from 'react';
 
-export function SingleSmsRequestScreen() {
+export function SingleApiRequestScreen() {
     return (
-        <AppLayout title='Single SMS Requests'>
+        <AppLayout title='Single Requests'>
             Single
         </AppLayout>
     );

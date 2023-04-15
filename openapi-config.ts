@@ -4,13 +4,13 @@ const config: ConfigFile = {
     schemaFile: './openapi.yaml',
     apiFile: './src/service/empty.api.ts',
     apiImport: 'emptySplitApi',
-    outputFile: './src/store/sms.gen.api.ts',
+    outputFile: './src/store/api.gen.api.ts',
     outputFiles: {
-        './src/store/sms.gen.api.ts': {
-            filterEndpoints: (operationName, operationDefinition) => operationDefinition.path.startsWith('/sms'),
+        './src/store/api.gen.api.ts': {
+            filterEndpoints: (operationName, operationDefinition) => operationDefinition.path.startsWith('/api'),
         },
     },
-    exportName: 'smsApi',
+    exportName: 'apiApi',
     hooks: true,
 }
 

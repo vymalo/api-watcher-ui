@@ -1,14 +1,14 @@
 import React, { Fragment, lazy, Suspense, useEffect, useState } from 'react';
 import { AppLayout } from '../components/app-layout';
-import { useGetSmsRequestsQuery } from '../store/sms.gen.api';
+import { useGetApiRequestsQuery } from '../store/api.gen.api';
 import { AppPagination } from '../components/pagination';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { Loading } from '../components/loading';
 import { Pagination } from '../types/pagination';
 
-const DisplaySmsRequestTable = lazy(() => import('../components/display-sms-request-table'));
+const DisplayApiRequestTable = lazy(() => import('../components/display-api-request-table'));
 
-export function AllSmsRequestsScreen() {
+export function AllApiRequestsScreen() {
     const navigate = useNavigate();
     const location = useLocation();
     const [params] = useSearchParams();
@@ -16,7 +16,7 @@ export function AllSmsRequestsScreen() {
     const [pagination, setPagination] = useState<Pagination>({
         page: 0, size: 4
     });
-    const { data, error, isLoading, isError, isSuccess } = useGetSmsRequestsQuery({
+    const { data, error, isLoading, isError, isSuccess } = useGetApiRequestsQuery({
         page: pagination.page, size: pagination.size
     }, {
         pollingInterval: 60_000,
@@ -52,7 +52,7 @@ export function AllSmsRequestsScreen() {
     });
 
     return (
-        <AppLayout title='SMS Requests'>
+        <AppLayout title='API Requests'>
             {isLoading && (
                 <Fragment>
                     Loading...
@@ -68,7 +68,7 @@ export function AllSmsRequestsScreen() {
 
             {isSuccess && (
                 <Suspense fallback={<Loading />}>
-                    <DisplaySmsRequestTable response={data} />
+                    <DisplayApiRequestTable response={data} />
                 </Suspense>
             )}
 

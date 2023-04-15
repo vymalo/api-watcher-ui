@@ -1,8 +1,8 @@
 openapi: 3.0.3
 info:
-  title: SMS API Receiver
+  title: API Receiver
   description: |-
-    This is a description for the application SMS API which would mainly be a docker app. What is does, is simply a CRUD (without U) with JSON data on requests objects. So the backend is going to persist the whole request, even path and parameters.
+    This is a description for the application API which would mainly be a docker app. What is does, is simply a CRUD (without U) with JSON data on requests objects. So the backend is going to persist the whole request, even path and parameters.
   contact:
     email: dev@ssegning.com
   license:
@@ -15,35 +15,35 @@ externalDocs:
 servers:
   - url: http://localhost:3000
 tags:
-  - name: sms
-    description: Create, Delete and Read sms requests.
+  - name: api
+    description: Create, Delete and Read api requests.
     externalDocs:
       description: Find out more
-      url: https://blog.ssegning.com/tag/sms
+      url: https://blog.ssegning.com/tag/api
   - name: config
     description: Where we're going to add more config about the API (in the future)
   - name: user
     description: If we want to supports auth in a future, this might be helpful.
 paths:
-  /sms:
+  /api:
     post:
       tags:
-        - sms
-      summary: Add a new sms to the store
-      description: Add a new sms to the store
-      operationId: addSmsRequest
+        - api
+      summary: Add a new api to the store
+      description: Add a new api to the store
+      operationId: addApiRequest
       requestBody:
-        description: Create a new sms in the store
+        description: Create a new api in the store
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SmsRequest'
+              $ref: '#/components/schemas/ApiRequest'
           application/xml:
             schema:
-              $ref: '#/components/schemas/SmsRequest'
+              $ref: '#/components/schemas/ApiRequest'
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/SmsRequest'
+              $ref: '#/components/schemas/ApiRequest'
         required: true
       responses:
         '200':
@@ -51,22 +51,22 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SmsRequest'
+                $ref: '#/components/schemas/ApiRequest'
             application/xml:
               schema:
-                $ref: '#/components/schemas/SmsRequest'
+                $ref: '#/components/schemas/ApiRequest'
         '405':
           description: Invalid input
       security:
-        - sms_auth:
-            - write:sms
-            - read:sms
+        - api_auth:
+            - write:api
+            - read:api
     get:
       tags:
-        - sms
-      summary: Finds SmsRequest
+        - api
+      summary: Finds ApiRequest
       description: Multiple status values can be provided with comma separated strings
-      operationId: getSmsRequests
+      operationId: getApiRequests
       parameters:
         - name: query
           in: query
@@ -102,29 +102,29 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SmsRequestPage'
+                $ref: '#/components/schemas/ApiRequestPage'
             application/xml:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/SmsRequest'
+                  $ref: '#/components/schemas/ApiRequest'
         '400':
           description: Invalid status value
       security:
-        - sms_auth:
-            - write:sms
-            - read:sms
-  /sms/{smsRequestId}:
+        - api_auth:
+            - write:api
+            - read:api
+  /api/{apiRequestId}:
     get:
       tags:
-        - sms
-      summary: Find sms by ID
-      description: Returns a single sms
-      operationId: getAnSmsRequest
+        - api
+      summary: Find api by ID
+      description: Returns a single api
+      operationId: getAnApiRequest
       parameters:
-        - name: smsRequestId
+        - name: apiRequestId
           in: path
-          description: ID of sms to return
+          description: ID of api to return
           required: true
           schema:
             type: string
@@ -134,28 +134,28 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SmsRequest'
+                $ref: '#/components/schemas/ApiRequest'
             application/xml:
               schema:
-                $ref: '#/components/schemas/SmsRequest'
+                $ref: '#/components/schemas/ApiRequest'
         '400':
           description: Invalid ID supplied
         '404':
-          description: Sms Request not found
+          description: Api Request not found
       security:
-        - sms_auth:
-            - write:sms
-            - read:sms
+        - api_auth:
+            - write:api
+            - read:api
     delete:
       tags:
-        - sms
-      summary: Deletes a sms
-      description: delete a sms
-      operationId: deleteSmsRequest
+        - api
+      summary: Deletes a api
+      description: delete a api
+      operationId: deleteApiRequest
       parameters:
-        - name: smsRequestId
+        - name: apiRequestId
           in: path
-          description: Sms Request id to delete
+          description: Api Request id to delete
           required: true
           schema:
             type: string
@@ -165,23 +165,23 @@ paths:
         '404':
           description: Request not found
       security:
-        - sms_auth:
-            - write:sms
-            - read:sms
+        - api_auth:
+            - write:api
+            - read:api
 components:
   schemas:
-    SmsRequestValue:
+    ApiRequestValue:
       oneOf:
         - type: string
         - type: number
-        - $ref: '#/components/schemas/SmsRequest'
-    SmsRequest:
+        - $ref: '#/components/schemas/ApiRequest'
+    ApiRequest:
       type: object
       additionalProperties:
-        $ref: '#/components/schemas/SmsRequestValue'
+        $ref: '#/components/schemas/ApiRequestValue'
       xml:
-        name: sms_request
-    SmsRequestPage:
+        name: api_request
+    ApiRequestPage:
       type: object
       required:
         - content
@@ -190,7 +190,7 @@ components:
         content:
           type: array
           items:
-            $ref: '#/components/schemas/SmsRequest'
+            $ref: '#/components/schemas/ApiRequest'
         meta:
           $ref: '#/components/schemas/PageMeta'
     PageMeta:
@@ -207,17 +207,17 @@ components:
         total:
           type: number
   requestBodies:
-    SmsRequest:
-      description: SmsRequest object that needs to be added to the store
+    ApiRequest:
+      description: ApiRequest object that needs to be added to the store
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/SmsRequest'
+            $ref: '#/components/schemas/ApiRequest'
         application/xml:
           schema:
-            $ref: '#/components/schemas/SmsRequest'
+            $ref: '#/components/schemas/ApiRequest'
   securitySchemes:
-    sms_auth:
+    api_auth:
       type: apiKey
       name: api_key
       in: header

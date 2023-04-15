@@ -2,7 +2,7 @@ import { socket } from '../service/socket';
 import { useEffect } from 'react';
 import { setSocketConnection } from '../service/socket.slice';
 import { mk } from '../common/keys';
-import { smsApi } from '../store/sms.gen.api';
+import { apiApi } from '../store/api.gen.api';
 import { useAppDispatch } from '../service/store';
 import * as _ from 'lodash';
 
@@ -19,8 +19,8 @@ export function SocketComponent() {
             dispatch(setSocketConnection(true));
         };
 
-        const onNewSms = (obj: any) => {
-            const updateQueryDataThunk = smsApi.util.updateQueryData('getSmsRequests', {
+        const onNewApi = (obj: any) => {
+            const updateQueryDataThunk = apiApi.util.updateQueryData('getApiRequests', {
                 page: 0, size
             }, (data) => {
                 if (!_.includes(data.content, obj)) {
@@ -37,13 +37,13 @@ export function SocketComponent() {
         socket.on('connect', onConnect);
         socket.on('disconnect', onDisconnect);
 
-        socket.on(mk`new_sms_request`, onNewSms);
+        socket.on(mk`new_api_request`, onNewApi);
 
         return () => {
             socket.off('connect', onConnect);
             socket.off('disconnect', onDisconnect);
 
-            socket.off(mk`new_sms_request`, onNewSms);
+            socket.off(mk`new_api_request`, onNewApi);
         };
     }, [dispatch]);
 
