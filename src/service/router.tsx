@@ -12,15 +12,15 @@ export const router = createBrowserRouter([
             {
                 path: '',
                 // https://reactrouter.com/en/main/components/navigate
-                Component: () => <Navigate to='/sms-requests' replace />
+                Component: () => <Navigate to='/api-requests' replace />
             },
             {
-                path: 'sms-requests',
-                lazy: () => import('../screens/all-sms-requests.screen').then((m) => ({ Component: m.AllSmsRequestsScreen }))
+                path: 'api-requests',
+                lazy: () => import('../screens/all-api-requests.screen').then((m) => ({ Component: m.AllApiRequestsScreen }))
             },
             {
-                path: 'sms-requests/:request_id',
-                lazy: () => import('../screens/single-sms-request.screen').then((m) => ({ Component: m.SingleSmsRequestScreen }))
+                path: 'api-requests/:request_id',
+                lazy: () => import('../screens/single-api-request.screen').then((m) => ({ Component: m.SingleApiRequestScreen }))
             }
         ]
     }

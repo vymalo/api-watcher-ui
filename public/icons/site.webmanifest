@@ -1,6 +1,6 @@
 {
-    "name": "SMS Request Watcher",
-    "short_name": "SMS Watcher",
+    "name": "Request Watcher",
+    "short_name": "Watcher",
     "icons": [
         {
             "src": "/icons/android-chrome-192x192.png",

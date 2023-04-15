@@ -1,6 +1,6 @@
 {
-  "name": "sms-reader-frontend",
-  "version": "0.1.0",
+  "name": "api-reader-frontend",
+  "version": "0.2.0",
   "private": true,
   "dependencies": {
     "@headlessui/react": "^1.7.13",

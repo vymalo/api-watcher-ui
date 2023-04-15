@@ -1,14 +1,14 @@
 import React from 'react';
-import { smsApi } from '../store/sms.gen.api';
+import { apiApi } from '../store/api.gen.api';
 
-interface SmsListItemProps {
+interface ApiListItemProps {
     idx: number;
 
     [key: string]: any;
 }
 
-export function SmsListItem({ id, created_at, idx, ...rest }: SmsListItemProps) {
-    smsApi.usePrefetch('getAnSmsRequest', {});
+export function ApiListItem({ id, created_at, idx, ...rest }: ApiListItemProps) {
+    apiApi.usePrefetch('getAnApiRequest', {});
     return (
         <div id={'card-' + id} className={`order-${idx} flex flex-col bg-white border shadow-sm rounded-xl mb-5`}>
             <div className='overflow-y-auto p-4 md:p-5'>

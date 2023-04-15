@@ -7,7 +7,7 @@ import { classNames } from '../common/class-names';
 
 const navigation = [
     { name: 'Dashboard', href: '/' },
-    { name: 'Sms Requests', href: '/sms-requests' }
+    { name: 'Api Requests', href: '/api-requests' }
 ];
 
 export function AppHeader() {
@@ -24,7 +24,7 @@ export function AppHeader() {
                                         <img
                                             className='h-8 w-8'
                                             src='/icons/android-chrome-512x512.png'
-                                            alt='SMS API Watcher'
+                                            alt='API Watcher'
                                         />
                                     </div>
                                     <div className='hidden sm:block'>
